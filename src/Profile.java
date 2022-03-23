@@ -30,7 +30,7 @@ public class Profile {
 
     private ArrayList<String> researchInts = new ArrayList<>();
 
-    private static HashMap<Profile, ArrayList<Profile>> collaborators = new HashMap<>();
+    private ArrayList<Profile> collaborators = new ArrayList<>();
 
     public Profile(String[] familyNames, String[] givenNames, int yearPhD,
                    int monthPhD, int dayPhD, String emailAddress,
@@ -113,15 +113,7 @@ public class Profile {
      * @param p the researcher's profile to be added.
      */
     void collaborate(Profile p) {
-        /*
-         * Get the current collaborators and add the new profile to the end of
-         * the Array List.
-         */
-        ArrayList<Profile> profiles = collaborators.get(this);
-        profiles.add(p);
-
-        // Replace the old profiles with the new profiles.
-        collaborators.replace(this, profiles);
+        collaborators.add(p);
     }
 
     /**
@@ -130,7 +122,7 @@ public class Profile {
      * @return true if researcher has collaborated or false if not collaborated with.
      */
     public boolean hasCollaboratedWith(Profile p) {
-        return collaborators.get(this).contains(p);
+        return collaborators.contains(p);
     }
 
     /**
@@ -138,7 +130,7 @@ public class Profile {
      * @return the number of researchers this user has collaborated with.
      */
     public int numOfCollabs() {
-        return collaborators.get(this).size();
+        return collaborators.size();
     }
 
     @Override
