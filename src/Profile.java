@@ -33,14 +33,14 @@ public class Profile {
 
     public Profile(String[] familyNames, String[] givenNames, int yearPhD,
                    int monthPhD, int dayPhD, String emailAddress,
-                   ArrayList<String> RESEARCH_INTS ) {
+                   ArrayList<String> researchInts) {
         setFamilyNames(familyNames);
         setGivenNames(givenNames);
         setYearPhD(yearPhD);
         setMonthPhD(monthPhD);
         setDayPhD(dayPhD);
         setEmailAddress(emailAddress);
-        setResearchInts(RESEARCH_INTS);
+        setResearchInts(researchInts);
     }
 
     public String[] getFamilyNames() {
@@ -134,14 +134,14 @@ public class Profile {
 
     @Override
     public String toString() {
-        return "Profile{" +
-                "familyNames=" + Arrays.toString(familyNames) +
-                ", givenNames=" + Arrays.toString(givenNames) +
-                ", yearPhD=" + yearPhD +
-                ", monthPhD=" + monthPhD +
-                ", dayPhD=" + dayPhD +
-                ", emailAddress='" + emailAddress + '\'' +
-                ", researchInts=" + researchInts +
-                '}';
+        return "Profile{"
+                + "familyNames=" + Arrays.toString(familyNames)
+                + ", givenNames=" + Arrays.toString(givenNames)
+                + ", yearPhD=" + yearPhD
+                + ", monthPhD=" + monthPhD
+                + ", dayPhD=" + dayPhD
+                + ", emailAddress='" + emailAddress + '\''
+                + ", researchInts=" + researchInts
+                + '}';
     }
 }
