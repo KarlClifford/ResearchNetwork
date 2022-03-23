@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 /**
  * Profile.
@@ -17,8 +18,8 @@ import java.util.Arrays;
 
 public class Profile {
 
-    private String[] familyNames;
-    private String[] givenNames;
+    private String familyNames;
+    private String givenNames;
 
     // PHD awarded date is split over three variables for day, month and year.
     private int yearPhD;
@@ -29,9 +30,9 @@ public class Profile {
 
     private ArrayList<String> researchInts = new ArrayList<>();
 
-    private ArrayList<Profile> collaborators = new ArrayList<>();
+    private static HashMap<Profile, ArrayList<Profile>> collaborators = new HashMap<>();
 
-    public Profile(String[] familyNames, String[] givenNames, int yearPhD,
+    public Profile(String familyNames, String givenNames, int yearPhD,
                    int monthPhD, int dayPhD, String emailAddress,
                    ArrayList<String> researchInts) {
         setFamilyNames(familyNames);
@@ -41,21 +42,22 @@ public class Profile {
         setDayPhD(dayPhD);
         setEmailAddress(emailAddress);
         setResearchInts(researchInts);
+        collaborators.put(this, null);
     }
 
-    public String[] getFamilyNames() {
+    public String getFamilyNames() {
         return familyNames;
     }
 
-    public void setFamilyNames(String[] familyNames) {
+    public void setFamilyNames(String familyNames) {
         this.familyNames = familyNames;
     }
 
-    public String[] getGivenNames() {
+    public String getGivenNames() {
         return givenNames;
     }
 
-    public void setGivenNames(String[] givenNames) {
+    public void setGivenNames(String givenNames) {
         this.givenNames = givenNames;
     }
 
@@ -112,7 +114,33 @@ public class Profile {
      * @param p the researcher's profile to be added.
      */
     void collaborate(Profile p) {
-        collaborators.add(p);
+        // Check this researcher hasn't already collaborated
+        if (!hasCollaboratedWith(p)) {
+
+            // profiles will store old collaborators and append the new collaborator to the end.
+            ArrayList<Profile> profiles = new ArrayList<>();
+
+            // Check if this researcher has collaborated with anyone.
+            if (collaborators.get(this) == null) {
+                // This researcher has never collaborated so make a new collaboration.
+                profiles.add(p);
+            } else {
+                /*
+                 * This researcher has collaborated before so update existing collaborators
+                 * as long as p is not already a collaborator.
+                 */
+                if (!collaborators.get(this).contains(p)) {
+                    profiles = collaborators.get(this);
+                    profiles.add(p);
+                }
+            }
+
+            // Replace the old profiles with the new profiles.
+            collaborators.put(this, profiles);
+
+            // This researcher has collaborated with p so add this researcher to P's collaborators.
+            p.collaborate(this);
+        }
     }
 
     /**
@@ -121,7 +149,14 @@ public class Profile {
      * @return true if researcher has collaborated or false if not collaborated with.
      */
     public boolean hasCollaboratedWith(Profile p) {
-        return collaborators.contains(p);
+        // Check this collaborator has any collaborators
+        if (collaborators.get(this) != null) {
+            // Check if this researcher has collaborated with p
+            return collaborators.get(this).contains(p);
+        } else {
+            // collaborators object is null so this researcher hasn't collaborated with p.
+            return false;
+        }
     }
 
     /**
@@ -135,8 +170,8 @@ public class Profile {
     @Override
     public String toString() {
         return "Profile{"
-                + "familyNames=" + Arrays.toString(familyNames)
-                + ", givenNames=" + Arrays.toString(givenNames)
+                + "familyNames=" + familyNames
+                + ", givenNames=" + givenNames
                 + ", yearPhD=" + yearPhD
                 + ", monthPhD=" + monthPhD
                 + ", dayPhD=" + dayPhD
