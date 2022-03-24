@@ -30,7 +30,8 @@ public class Profile {
 
     private ArrayList<String> researchInts = new ArrayList<>();
 
-    private static HashMap<Profile, ArrayList<Profile>> collaborators = new HashMap<>();
+    //private static HashMap<Profile, ArrayList<Profile>> collaborators = new HashMap<>();
+    private ArrayList<Profile> collaborators = new ArrayList<>();
 
     public Profile(String familyNames, String givenNames, int yearPhD,
                    int monthPhD, int dayPhD, String emailAddress,
@@ -42,7 +43,6 @@ public class Profile {
         setDayPhD(dayPhD);
         setEmailAddress(emailAddress);
         setResearchInts(researchInts);
-        collaborators.put(this, null);
     }
 
     public String getFamilyNames() {
@@ -117,26 +117,8 @@ public class Profile {
         // Check this researcher hasn't already collaborated
         if (!hasCollaboratedWith(p)) {
 
-            // profiles will store old collaborators and append the new collaborator to the end.
-            ArrayList<Profile> profiles = new ArrayList<>();
-
-            // Check if this researcher has collaborated with anyone.
-            if (collaborators.get(this) == null) {
-                // This researcher has never collaborated so make a new collaboration.
-                profiles.add(p);
-            } else {
-                /*
-                 * This researcher has collaborated before so update existing collaborators
-                 * as long as p is not already a collaborator.
-                 */
-                if (!collaborators.get(this).contains(p)) {
-                    profiles = collaborators.get(this);
-                    profiles.add(p);
-                }
-            }
-
-            // Replace the old profiles with the new profiles.
-            collaborators.put(this, profiles);
+            // Add p as a collaborator
+            collaborators.add(p);
 
             // This researcher has collaborated with p so add this researcher to P's collaborators.
             p.collaborate(this);
@@ -144,19 +126,13 @@ public class Profile {
     }
 
     /**
-     * Determines whether this research has collaborated with another named researcher.
+     * Determines whether this researcher has collaborated with another named researcher.
      * @param p the researcher's profile to be checked.
      * @return true if researcher has collaborated or false if not collaborated with.
      */
     public boolean hasCollaboratedWith(Profile p) {
-        // Check this collaborator has any collaborators
-        if (collaborators.get(this) != null) {
-            // Check if this researcher has collaborated with p
-            return collaborators.get(this).contains(p);
-        } else {
-            // collaborators object is null so this researcher hasn't collaborated with p.
-            return false;
-        }
+        // Check if this researcher has collaborated with p
+        return collaborators.contains(p);
     }
 
     /**
