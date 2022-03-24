@@ -1,5 +1,5 @@
 /**
- * BTSNode.
+ * BTS.
  * @version 1.0
  *
  * Created 24/03/2022.
