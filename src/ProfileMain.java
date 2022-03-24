@@ -24,7 +24,7 @@ public class ProfileMain {
         profile1ResearchInts.add("AI");
 
         // Make a test profile.
-        Profile profile1 = new Profile("John", "Appleseed",
+        Profile profile1 = new Profile("Appleseed", "John",
                 2003, 12, 5,
                 "johnappleseed@gmail.com", profile1ResearchInts);
 
@@ -34,7 +34,7 @@ public class ProfileMain {
         profile2ResearchInts.add("Computer vision");
 
         // Make the second test profile.
-        Profile profile2 = new Profile("Jane", "Doe",
+        Profile profile2 = new Profile("Doe", "Jane",
                 2002, 6, 3,
                 "janedoe@gmail.com", profile2ResearchInts);
 
