@@ -59,7 +59,7 @@ public class BST {
                 parent.setL(child);
             } else {
                 // Node is not empty so get the next node.
-                setNext(parent, child);
+                setNext(parent.getL(), child);
             }
         } else {
             // newResearcher name is alphabetically after current researcher so go right.
@@ -68,7 +68,7 @@ public class BST {
                 parent.setR(child);
             } else {
                 // Node is not empty so get the next node.
-                setNext(parent, child);
+                setNext(parent.getR(), child);
             }
         }
 
