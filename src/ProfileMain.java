@@ -24,7 +24,9 @@ public class ProfileMain {
         profile1ResearchInts.add("AI");
 
         // Make a test profile.
-        Profile profile1 = new Profile("John", "Appleseed", 2003, 12, 5, "johnappleseed@gmail.com", profile1ResearchInts);
+        Profile profile1 = new Profile("John", "Appleseed",
+                2003, 12, 5,
+                "johnappleseed@gmail.com", profile1ResearchInts);
 
         // Make an array of interests to issue to Profile 2.
         ArrayList<String> profile2ResearchInts = new ArrayList<>();
@@ -32,7 +34,9 @@ public class ProfileMain {
         profile2ResearchInts.add("Computer vision");
 
         // Make the second test profile.
-        Profile profile2 = new Profile("Jane", "Doe", 2002, 6, 3, "janedoe@gmail.com", profile2ResearchInts);
+        Profile profile2 = new Profile("Jane", "Doe",
+                2002, 6, 3,
+                "janedoe@gmail.com", profile2ResearchInts);
 
          /*
           * Testing the collaborate feature. This should make profile 2 a collaborator of profile 1
