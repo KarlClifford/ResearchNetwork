@@ -1,6 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 
 /**
  * Profile.
@@ -21,7 +19,7 @@ public class Profile {
     private String familyNames;
     private String givenNames;
 
-    // PHD awarded date is split over three variables for day, month and year.
+    // PhD awarded date is split over three variables for day, month and year.
     private int yearPhD;
     private int monthPhD;
     private int dayPhD;
@@ -151,6 +149,7 @@ public class Profile {
                 + ", yearPhD=" + yearPhD
                 + ", monthPhD=" + monthPhD
                 + ", dayPhD=" + dayPhD
+                + ", PhDIssueDate=" + getDateOfPhD()
                 + ", emailAddress='" + emailAddress + '\''
                 + ", researchInts=" + researchInts
                 + '}';
