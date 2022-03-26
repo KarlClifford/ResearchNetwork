@@ -15,6 +15,5 @@
 public class FileReaderMain {
     public static void main(String[] args) {
         BST bst = FileReader.readResearcherProfiles("researchers.txt");
-        //TODO: printing the nodes as you go just before 2.5?
     }
 }

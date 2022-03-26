@@ -84,6 +84,8 @@ public class FileReader {
         // Iterate over queue and add every profile to the tree.
         for (Profile profile : profiles) {
             bst.insertResearcher(profile);
+            // Print profile to the screen after it has been added to the BST.
+            System.out.println(profile);
         }
         return bst;
     }
