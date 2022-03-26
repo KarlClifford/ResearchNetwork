@@ -21,6 +21,11 @@ import java.util.Arrays;
 
 public class FileReader {
 
+    /**
+     * Creates a BST from a text file.
+     * @param filename the file to read.
+     * @return a BST.
+     */
     public static BST readResearcherProfiles(String filename) {
 
         // BST to be returned.
@@ -50,6 +55,11 @@ public class FileReader {
         return bst;
     }
 
+    /**
+     * Creates a profile from the string passed in.
+     * @param input data to use to create the profile.
+     * @return a profile.
+     */
     private static Profile createProfile(String input) {
 
         Scanner read = new Scanner(input);
@@ -77,6 +87,11 @@ public class FileReader {
 
     }
 
+    /**
+     * Creates a binary search tree from a queue of profiles.
+     * @param profiles are the profiles to be added to the tree.
+     * @return a BST.
+     */
     private static BST createTree(Queue<Profile> profiles) {
         // Create an empty tree. We will store profiles in this tree that were read from the file.
         BST bst = new BST();
