@@ -1,4 +1,6 @@
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 /**
  * Profile.
@@ -24,7 +26,7 @@ public class Profile {
     private int monthPhD;
     private int dayPhD;
 
-    private String emailAddress;
+    private String email;
 
     private ArrayList<String> researchInts = new ArrayList<>();
 
@@ -32,14 +34,14 @@ public class Profile {
     private ArrayList<Profile> collaborators = new ArrayList<>();
 
     public Profile(String familyNames, String givenNames, int yearPhD,
-                   int monthPhD, int dayPhD, String emailAddress,
+                   int monthPhD, int dayPhD, String email,
                    ArrayList<String> researchInts) {
         setFamilyNames(familyNames);
         setGivenNames(givenNames);
         setYearPhD(yearPhD);
         setMonthPhD(monthPhD);
         setDayPhD(dayPhD);
-        setEmailAddress(emailAddress);
+        setEmail(email);
         setResearchInts(researchInts);
     }
 
@@ -57,6 +59,10 @@ public class Profile {
 
     public void setGivenNames(String givenNames) {
         this.givenNames = givenNames;
+    }
+
+    public String getName() {
+        return getGivenNames() + " " + getFamilyNames();
     }
 
     public int getYearPhD() {
@@ -83,12 +89,12 @@ public class Profile {
         this.dayPhD = dayPhD;
     }
 
-    public String getEmailAddress() {
-        return emailAddress;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public ArrayList<String> getResearchInts() {
@@ -104,14 +110,19 @@ public class Profile {
      * @return date in format YYYY-MM-DD.
      */
     public String getDateOfPhD() {
-        return getYearPhD() + "-" + getMonthPhD() + "-" + getDayPhD();
+        DecimalFormat decimalFormat = new DecimalFormat("00");
+        return decimalFormat.format(getYearPhD())
+                + "-"
+                + decimalFormat.format(getMonthPhD())
+                + "-"
+                + decimalFormat.format(getDayPhD());
     }
 
     /**
      * Adds a collaborator profile to the collaborators data structure.
      * @param p the researcher's profile to be added.
      */
-    void collaborate(Profile p) {
+    public void collaborate(Profile p) {
         // Check this researcher hasn't already collaborated
         if (!hasCollaboratedWith(p)) {
 
@@ -149,9 +160,13 @@ public class Profile {
                 + ", yearPhD=" + yearPhD
                 + ", monthPhD=" + monthPhD
                 + ", dayPhD=" + dayPhD
-                + ", PhDIssueDate=" + getDateOfPhD()
-                + ", emailAddress='" + emailAddress + '\''
+                + ", DatePhD=" + getDateOfPhD()
+                + ", email='" + email + '\''
                 + ", researchInts=" + researchInts
+                + ", collaborators=" + collaborators
+                                            .stream()
+                                            .map(Profile::getName)
+                                            .collect(Collectors.toCollection(ArrayList::new))
                 + '}';
     }
 }
