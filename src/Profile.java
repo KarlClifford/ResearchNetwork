@@ -62,7 +62,7 @@ public class Profile {
     }
 
     public String getName() {
-        return getGivenNames() + " " + getFamilyNames();
+        return getGivenNames() + ", " + getFamilyNames();
     }
 
     public int getYearPhD() {

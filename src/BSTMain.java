@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class BSTMain {
     public static void main(String[] args) {
 
-        // Make some profiles to add to the tree.
+       /* // Make some profiles to add to the tree.
         Profile profile1 = new Profile("Aureliano", "Gittel Kilgore",
                 2001, 7, 12,
                 "marcelle_paxtonjlmj@buy.kw",
@@ -41,15 +41,48 @@ public class BSTMain {
         Profile profile5 = new Profile("Dhamara", "Makia Waldman",
                 2004, 12, 19,
                 "jiles_janssenib@status.ktc",
+                new ArrayList<String>());*/
+
+        /*Profile profile1 = new Profile("Church", "Alonzo",
+                2001, 7, 12,
+                "marcelle_paxtonjlmj@buy.kw",
                 new ArrayList<String>());
+
+        Profile profile2 = new Profile("Astarte", "Troy Kaighin",
+                2002, 8, 1,
+                "tyeisha_hunte@labeled.rgp",
+                new ArrayList<String>());
+
+        Profile profile3 = new Profile("Dijkstra", "Edsger Wybe",
+                2003, 5, 12,
+                "chasity_swim7mz@lectures.qo",
+                new ArrayList<String>());
+*/
+
+        Profile profile3 = new Profile("Church", "Alonzo",
+                2001, 7, 12,
+                "marcelle_paxtonjlmj@buy.kw",
+                new ArrayList<String>());
+
+        Profile profile2 = new Profile("Astarte", "Troy Kaighin",
+                2002, 8, 1,
+                "tyeisha_hunte@labeled.rgp",
+                new ArrayList<String>());
+
+        Profile profile1 = new Profile("Dijkstra", "Edsger Wybe",
+                2003, 5, 12,
+                "chasity_swim7mz@lectures.qo",
+                new ArrayList<String>());
+
+
 
         // Make tree and add all profiles to tree
         BST tree = new BST();
         tree.insertResearcher(profile1);
         tree.insertResearcher(profile2);
         tree.insertResearcher(profile3);
-        tree.insertResearcher(profile4);
-        tree.insertResearcher(profile5);
+        //tree.insertResearcher(profile4);
+        //tree.insertResearcher(profile5);
 
 
     }
