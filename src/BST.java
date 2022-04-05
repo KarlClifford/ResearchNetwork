@@ -22,6 +22,8 @@ public class BST {
     }
 
     public void insertResearcher(Profile p) {
+        //System.out.println("INSERTING + " + p.getFamilyNames() + " " + p.getGivenNames());
+        //System.out.println(p);
 
         // Make new node to add to tree from p parameter
         final BSTNode NEW_NODE = new BSTNode(p);
@@ -38,21 +40,29 @@ public class BST {
     private void setNext(BSTNode parent, BSTNode child) {
 
         // The integer representation of the first letter of the parent researcher's name.
-        int currentResearcher = parent
-                .getResearcher()
-                .getFamilyNames()
-                .toLowerCase()
-                .toCharArray()[0];
+        //int currentResearcher = parent
+                //.getResearcher()
+                //.getFamilyNames()
+                //.toLowerCase()
+                //.toCharArray()[0];
 
         // The integer representation of the first letter of the child researcher's name.
-        int newResearcher = child
-                .getResearcher()
-                .getFamilyNames()
-                .toLowerCase()
-                .toCharArray()[0];
+        //int newResearcher = child
+                //.getResearcher()
+                //.getFamilyNames()
+                //.toLowerCase()
+                //.toCharArray()[0];
+
+        //System.out.println("RUNNING SET NEXT!");
+        //System.out.println("PARENT: " + parent.getResearcher().getFamilyNames());
+        //System.out.println("CHILD: "+ child.getResearcher().getFamilyNames());
+
+        // The integer comparison of the parent node to the child node.
+        int comparison = child.getResearcher().getFamilyNames().compareTo(parent.getResearcher().getFamilyNames());
+        //System.out.println(comparison);
 
         // Check if the new researcher's name should be ordered left or right to the current node.
-        if (newResearcher <= currentResearcher) {
+        if (comparison <= 0) {
             // newResearcher name is alphabetically before current researcher so go left.
             if (parent.getL() == null) {
                 // Left node is empty so store new node here.
