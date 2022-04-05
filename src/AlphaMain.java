@@ -3,7 +3,7 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 /**
- * BTS.
+ * AlphaMain.
  * @version 1.0
  *
  * Created 05/04/2022.
