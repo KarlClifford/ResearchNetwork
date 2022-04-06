@@ -20,7 +20,7 @@ import java.util.Scanner;
 
 public class Graph {
 
-    private BST tree;
+    protected BST tree;
 
     public Graph(String filename, BST tree) {
         this.tree = tree;
