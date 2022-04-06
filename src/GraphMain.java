@@ -16,10 +16,10 @@ public class GraphMain {
     public static void main(String[] args) {
 
         // Make tree and add all profiles to tree.
-        BST tree = FileReader.readResearcherProfiles("researchers.txt");
+        BST tree = FileReader.readResearcherProfiles("researchers-1.txt");
 
         // Make the graph and pass in this tree.
-        Graph graph = new Graph("edges.txt", tree);
+        Graph graph = new Graph("edges-1.txt", tree);
 
         // Get influencers.
         System.out.println("Candidate for Astarte: " + graph.findInfluencer("Astarte").getFamilyNames());

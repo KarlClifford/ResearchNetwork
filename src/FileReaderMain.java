@@ -15,6 +15,6 @@
 public class FileReaderMain {
     public static void main(String[] args) {
         // Read a file to make a BST throw an error if file reading has failed.
-        BST bst = FileReader.readResearcherProfiles("researchers.txt");
+        BST bst = FileReader.readResearcherProfiles("researchers-1.txt");
     }
 }
