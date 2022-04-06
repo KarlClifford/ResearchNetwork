@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
  *
  * Created 23/03/2022.
  *
- * Last Modified 23/03/2022.
+ * Last Modified 06/04/2022.
  * @author Karl Clifford.
  *
  * No Copyright.
@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
  * This class repreesnts a user profile for a researcher in the research network.
  */
 
-public class Profile {
+public class Profile implements Comparable<Profile> {
 
     private String familyNames;
     private String givenNames;
@@ -36,6 +36,7 @@ public class Profile {
     public Profile(String familyNames, String givenNames, int yearPhD,
                    int monthPhD, int dayPhD, String email,
                    ArrayList<String> researchInts) {
+
         setFamilyNames(familyNames);
         setGivenNames(givenNames);
         setYearPhD(yearPhD);
@@ -150,6 +151,17 @@ public class Profile {
      */
     public int numOfCollabs() {
         return collaborators.size();
+    }
+
+    /**
+     * Compare profiles based on number of collaborators.
+     * Profiles with a higher number of collaborators will have higher priority.
+     * @param that profile to compare to.
+     * @return -1, 0 or 1 depending on the priority of the Profile.
+     */
+    @Override
+    public int compareTo(Profile that) {
+        return Integer.compare(that.numOfCollabs(), this.numOfCollabs());
     }
 
     @Override

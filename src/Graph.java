@@ -1,7 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
@@ -11,7 +10,7 @@ import java.util.Scanner;
  *
  * Created 05/04/2022.
  *
- * Last Modified 24/03/2022.
+ * Last Modified 06/04/2022.
  * @author Karl Clifford.
  *
  * No Copyright.
@@ -21,10 +20,10 @@ import java.util.Scanner;
 
 public class Graph {
 
-    BST tree;
+    private final BST TREE;
 
     public Graph(String filename, BST tree) {
-        this.tree = tree;
+        this.TREE = tree;
         readCollaborators(filename);
     }
 
@@ -33,7 +32,7 @@ public class Graph {
      * @param filename the file to read.
      */
     private void readCollaborators(String filename) {
-        // Read the file and add each collaborator pair.
+        // Read the file and throw an error if the filename is incorrect.
         try {
             File file = new File(filename);
             Scanner in = new Scanner(file);
@@ -56,11 +55,11 @@ public class Graph {
      */
     private void addCollaborator(String[] collaborators) {
         // Find profiles from the collaborators that were passed into this method.
-        Profile p1 = tree.getProfile(collaborators[0]);
-        Profile p2 = tree.getProfile(collaborators[1]);
+        Profile p1 = TREE.getProfile(collaborators[0]);
+        Profile p2 = TREE.getProfile(collaborators[1]);
 
         // Ensure both profiles have a value and that we haven't fetched the same two profiles.
-        if((p1 != null && p2 != null) && (!p1.equals(p2))) {
+        if ((p1 != null && p2 != null) && (!p1.equals(p2))) {
             // Add these profiles as collaborators
             p1.collaborate(p2);
         }
@@ -76,21 +75,15 @@ public class Graph {
      */
     private Profile getInfluencer(String familyNames) {
         // Get the profile from input. We will compare this to the profiles in the BST.
-        Profile p1 = tree.getProfile(familyNames);
+        Profile p1 = TREE.getProfile(familyNames);
         Profile p2;
 
-        // Pass an ArrayList into the search tree method to populate it with all the profiles in the BST.
+        // Pass an ArrayList into the searchTree() method to populate it with all the profiles in the BST.
         ArrayList<Profile> profiles = new ArrayList<>();
-        tree.searchTree(tree.getRoot(), profiles);
+        TREE.searchTree(TREE.getRoot(), profiles);
 
-        /*
-         * Make a comparator that will allow our priority queue to order
-         * from the greatest number of collaborators to least.
-         */
-        Comparator<Profile> comparator = new ProfileComparator();
-        PriorityQueue<Profile> queue = new PriorityQueue<>(comparator);
-
-        queue.addAll(profiles);
+        // Queue to store ordered profiles in.
+        PriorityQueue<Profile> queue = new PriorityQueue<>(profiles);
 
         /*
          * Look at every top element in the queue, it is likely that we will have a successful hit within the first
@@ -103,6 +96,7 @@ public class Graph {
 
             // Check that p2 isn't a duplicate of p1 and that these profiles are not already collaborating.
             if (!p1.equals(p2) && !p1.hasCollaboratedWith(p2)) {
+                // This profile is a valid influencer so return it.
                 return p2;
             }
         }
@@ -118,11 +112,5 @@ public class Graph {
      */
     public Profile findInfluencer(String familyName) {
         return getInfluencer(familyName);
-    }
-}
-
-class ProfileComparator implements Comparator<Profile> {
-    public int compare(Profile p1, Profile p2) {
-        return Integer.compare(p2.numOfCollabs(), p1.numOfCollabs());
     }
 }

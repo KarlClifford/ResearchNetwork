@@ -3,12 +3,12 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 /**
- * BTS.
+ * BST.
  * @version 1.0
  *
  * Created 24/03/2022.
  *
- * Last Modified 24/03/2022.
+ * Last Modified 06/04/2022.
  * @author Karl Clifford.
  *
  * No Copyright.
@@ -21,9 +21,6 @@ public class BST {
 
     private BSTNode root;
 
-    public BST() {
-
-    }
 
     public BSTNode getRoot() {
         return root;
@@ -135,19 +132,21 @@ public class BST {
 
         // Iterate over each profile and check if the profile is the one we want to find.
         for (Profile profile : searchTree(root, profiles)) {
+            // Profile exists exit loop.
             if (profile.getFamilyNames().toLowerCase().contains(familyName.toLowerCase())) {
                 return true;
             }
         }
 
+        // Profile does not exist.
         return false;
 
     }
 
     /**
      * Recursive method that scans the entire tree and returns each profile it finds in an array
-     * @param node is the node to scan.
-     * @param profiles is the set of profiles to add results to.
+     * @param node the node to scan.
+     * @param profiles the set of profiles to add results to.
      * @return an array List of profiles.
      */
     public ArrayList<Profile> searchTree(BSTNode node, ArrayList<Profile> profiles) {
@@ -177,7 +176,7 @@ public class BST {
 
             ArrayList<Profile> profiles = new ArrayList<>();
 
-            // Iterate over each profile and retun the one we want to find.
+            // Iterate over each profile and return the one we want to find.
             for (Profile profile : searchTree(root, profiles)) {
                 if (profile.getFamilyNames().toLowerCase().contains(familyName.toLowerCase())) {
                     return profile;
@@ -187,46 +186,7 @@ public class BST {
         }
         // Profile doesn't exist so display an error message.
         System.out.println("Error profile doesn't exist!");
-
-        //TODO this may cause an error.
         return null;
     }
-
-    /*public void updateTree(Profile p) {
-        updateNode(root, p);
-    }
-
-    *//**
-     * Recursive method that scans the entire tree and updates a node within the BST
-     * @param node is the node to scan.
-     * @param p the profile to update.
-     *//*
-    private void updateNode(BSTNode node, Profile p) {
-
-        if (this.root.getResearcher().equals(p)) {
-            this.root = new BSTNode(p);
-        }
-
-        if (node.getL() == null && node.getR() == null) {
-            System.out.println("ERROR!");
-        }
-
-        // Check the left child of this node, if it's not null get the child node.
-        if (node.getL().getResearcher() == p) {
-            BSTNode n = new BSTNode(p);
-            n.setL(node.getL().getL());
-            node.setL(n);
-        } else {
-            updateNode(node.getL(), p);
-        }
-        // Check the right child of this node, if it's not null get the child node.
-        if (node.getR().getResearcher() == p) {
-            BSTNode n = new BSTNode(p);
-            n.setR(node.getR().getR());
-            node.setR(n);
-        } else {
-            updateNode(node.getR(), p);
-        }
-    }*/
 
 }

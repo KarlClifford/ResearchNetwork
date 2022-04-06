@@ -11,12 +11,12 @@ import java.util.Arrays;
  *
  * Created 26/03/2022.
  *
- * Last Modified 26/03/2022.
+ * Last Modified 06/04/2022.
  * @author Karl Clifford.
  *
  * No Copyright.
  *
- * This class is used to read data from a file and create profiles based on the attributes of that data
+ * This class is used to read data from a file and create profiles based on the attributes of that data.
  */
 
 public class FileReader {
@@ -37,7 +37,6 @@ public class FileReader {
         // Read the file and pass each line into createProfile method.
         try {
             File file = new File(filename);
-
             Scanner in = new Scanner(file);
 
             // Iterate over the file and creates a new profile for each line read in.
@@ -69,7 +68,6 @@ public class FileReader {
         final String GIVEN_NAME = read.next();
         final String FAMILY_NAMES = read.next();
 
-        //TODO: The format of the test data and the description conflicts. Test to find out if this is right.
         final String[] DATE = read.next().split("-");
 
         final int YEAR_PHD = Integer.parseInt(DATE[0]);
@@ -99,8 +97,6 @@ public class FileReader {
         // Iterate over queue and add every profile to the tree.
         for (Profile profile : profiles) {
             bst.insertResearcher(profile);
-            // Print profile to the screen after it has been added to the BST.
-            //System.out.println(profile);
         }
         return bst;
     }

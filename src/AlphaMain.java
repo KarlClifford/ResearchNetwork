@@ -1,6 +1,4 @@
 import java.util.ArrayList;
-import java.util.SortedSet;
-import java.util.TreeSet;
 
 /**
  * AlphaMain.
@@ -8,7 +6,7 @@ import java.util.TreeSet;
  *
  * Created 05/04/2022.
  *
- * Last Modified 05/04/2022.
+ * Last Modified 06/04/2022.
  * @author Karl Clifford.
  *
  * No Copyright.
@@ -19,6 +17,7 @@ import java.util.TreeSet;
 public class AlphaMain {
     public static void main(String[] args) {
 
+        // Make some profiles to store in the BST.
         Profile profile3 = new Profile("Church", "Alonzo",
                 2001, 7, 12,
                 "marcelle_paxtonjlmj@buy.kw",
@@ -36,13 +35,11 @@ public class AlphaMain {
 
 
 
-        // Make tree and add all profiles to tree
+        // Make tree and add all profiles to the tree.
         BST tree = new BST();
         tree.insertResearcher(profile1);
         tree.insertResearcher(profile2);
         tree.insertResearcher(profile3);
-
-        SortedSet<String> profiles = new TreeSet<>();
 
         System.out.println(tree.printAlphabetical());
 
