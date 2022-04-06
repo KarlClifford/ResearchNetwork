@@ -20,10 +20,10 @@ import java.util.Scanner;
 
 public class Graph {
 
-    private final BST TREE;
+    private BST tree;
 
     public Graph(String filename, BST tree) {
-        this.TREE = tree;
+        this.tree = tree;
         readCollaborators(filename);
     }
 
@@ -55,8 +55,8 @@ public class Graph {
      */
     private void addCollaborator(String[] collaborators) {
         // Find profiles from the collaborators that were passed into this method.
-        Profile p1 = TREE.getProfile(collaborators[0]);
-        Profile p2 = TREE.getProfile(collaborators[1]);
+        Profile p1 = tree.getProfile(collaborators[0]);
+        Profile p2 = tree.getProfile(collaborators[1]);
 
         // Ensure both profiles have a value and that we haven't fetched the same two profiles.
         if ((p1 != null && p2 != null) && (!p1.equals(p2))) {
@@ -75,12 +75,12 @@ public class Graph {
      */
     private Profile getInfluencer(String familyNames) {
         // Get the profile from input. We will compare this to the profiles in the BST.
-        Profile p1 = TREE.getProfile(familyNames);
+        Profile p1 = tree.getProfile(familyNames);
         Profile p2;
 
         // Pass an ArrayList into the searchTree() method to populate it with all the profiles in the BST.
         ArrayList<Profile> profiles = new ArrayList<>();
-        TREE.searchTree(TREE.getRoot(), profiles);
+        tree.searchTree(tree.getRoot(), profiles);
 
         // Queue to store ordered profiles in.
         PriorityQueue<Profile> queue = new PriorityQueue<>(profiles);
